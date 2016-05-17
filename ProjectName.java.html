@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>ProjectName.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(128,128,128); }
+.s3 { color: rgb(104,151,187); }
+.s4 { color: rgb(106,135,89); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ProjectName.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.PageFactory</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.ExpectedConditions</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.WebDriverWait</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.concurrent.TimeUnit</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">ProjectName { 
+ 
+    </span><span class="s0">protected static </span><span class="s1">ProjectElements pe</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected static </span><span class="s1">ProjectFields pf</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">private </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">ProjectName(WebDriver webDriver) { 
+        </span><span class="s0">this</span><span class="s1">.webDriver = webDriver</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">ProjectNameTest() { 
+ 
+        pf = </span><span class="s0">new </span><span class="s1">ProjectFields(webDriver)</span><span class="s0">;</span><span class="s1"> 
+        pe = PageFactory.initElements(webDriver</span><span class="s0">, </span><span class="s1">ProjectElements.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s2">//        List&lt;WebElement&gt; Projects_list = webDriver.findElements(By.xpath(&quot;//table[@class='aui']/tbody/tr&quot;));</span><span class="s1"> 
+</span><span class="s2">//        int list_size = Projects_list.size();</span><span class="s1"> 
+ 
+        </span><span class="s0">int </span><span class="s1">list_size = pe.getProject_table().size()</span><span class="s0">;</span><span class="s1"> 
+ 
+        System.out.println(list_size)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">current_link</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">n = </span><span class="s3">1</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">for </span><span class="s1">(current_link = </span><span class="s3">0</span><span class="s0">; </span><span class="s1">current_link &lt; list_size</span><span class="s0">; </span><span class="s1">current_link++) { 
+            System.out.println(</span><span class="s4">&quot;----------------------------------------------------------------&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s2">//            Projects_list = webDriver.findElements(By.xpath(&quot;//table[@class='aui']/tbody/tr/td[2]/a&quot;));</span><span class="s1"> 
+            </span><span class="s2">//             Projects_list = webDriver.findElements(By.xpath(&quot;//table[@class='aui']/tbody/tr[323]/td[2]/a&quot;));</span><span class="s1"> 
+</span><span class="s2">//            WebElement el = Projects_list.get(current_link);</span><span class="s1"> 
+ 
+            WebElement el = pe.getProject_list().get(current_link)</span><span class="s0">;</span><span class="s1"> 
+            System.out.println(n + </span><span class="s4">&quot; Project Name: &quot; </span><span class="s1">+ el.getText())</span><span class="s0">;</span><span class="s1"> 
+            el.click()</span><span class="s0">;</span><span class="s1"> 
+            </span><span class="s2">// NOTE: Verify presence of components.</span><span class="s1"> 
+            WebElement Component = </span><span class="s0">null;</span><span class="s1"> 
+            </span><span class="s0">try </span><span class="s1">{ 
+                Component = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s3">3</span><span class="s1">).until(ExpectedConditions.presenceOfElementLocated(By 
+                                .xpath(</span><span class="s4">&quot;//div[@id='project-config-webpanel-summary-components']/div[2]/div/p/a[text()='Add a component']&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+            } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+            } 
+            </span><span class="s0">if </span><span class="s1">(Component != </span><span class="s0">null</span><span class="s1">) { 
+                System.out.println(</span><span class="s4">&quot;NO COMPONENT FOUND&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                pf.Roles()</span><span class="s0">;</span><span class="s1"> 
+                webDriver.navigate().back()</span><span class="s0">;</span><span class="s1"> 
+                pf.Workflow()</span><span class="s0">;</span><span class="s1"> 
+                webDriver.navigate().back()</span><span class="s0">;</span><span class="s1"> 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                WebElement Show_all = </span><span class="s0">null;</span><span class="s1"> 
+                </span><span class="s0">try </span><span class="s1">{ 
+                    Show_all = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s3">3</span><span class="s1">).until(ExpectedConditions.presenceOfElementLocated(By 
+                            .xpath(</span><span class="s4">&quot;//div[@id='project-config-webpanel-summary-components']/div/div/p/*[text()='Show all']&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+                } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+                } 
+                </span><span class="s0">if </span><span class="s1">(Show_all != </span><span class="s0">null</span><span class="s1">) { 
+ 
+                    WebElement Show_all_Button = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s3">3</span><span class="s1">).until(ExpectedConditions.presenceOfElementLocated(By 
+                            .xpath(</span><span class="s4">&quot;//div[@id='project-config-webpanel-summary-components']/div/div/p/*[text()='Show all']&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+                    Show_all_Button.click()</span><span class="s0">;</span><span class="s1"> 
+ 
+                    List&lt;WebElement&gt; Show_all_Components = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s3">3</span><span class="s1">).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By 
+                            .xpath(</span><span class="s4">&quot;//table[@id='project-config-components-table']/tbody[2]//tr&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+                    </span><span class="s0">int </span><span class="s1">Number_of_Components = Show_all_Components.size()</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(</span><span class="s4">&quot;SIX OR MORE COMPONENTS: &quot; </span><span class="s1">+ Number_of_Components)</span><span class="s0">;</span><span class="s1"> 
+                    </span><span class="s0">for </span><span class="s1">(WebElement sac : Show_all_Components) { 
+                        System.out.println( 
+                                sac.findElement(By.xpath(</span><span class="s4">&quot;td[2]&quot;</span><span class="s1">)).getText() 
+</span><span class="s2">//                              + sac.findElement(By.xpath(&quot;td[3]&quot;)).getText() + &quot; - &quot;</span><span class="s1"> 
+</span><span class="s2">//                              + sac.findElement(By.xpath(&quot;td[4]&quot;)).getText() + &quot; - &quot;</span><span class="s1"> 
+</span><span class="s2">//                              + sac.findElement(By.xpath(&quot;td[5]&quot;)).getText()</span><span class="s1"> 
+                        )</span><span class="s0">;</span><span class="s1"> 
+                    } 
+                    webDriver.navigate().back()</span><span class="s0">;</span><span class="s1"> 
+                } </span><span class="s0">else </span><span class="s1">{ 
+                    pf.FiveOrLessComponentsSize()</span><span class="s0">;</span><span class="s1"> 
+                    System.out.println(</span><span class="s4">&quot;FIVE OR LESS COMPONENTS: &quot; </span><span class="s1">+ ProjectFields.Components_list_size)</span><span class="s0">;</span><span class="s1"> 
+                    pf.FiveOrLessComponentsList()</span><span class="s0">;</span><span class="s1"> 
+                } 
+             pf.Roles()</span><span class="s0">;</span><span class="s1"> 
+             webDriver.navigate().back()</span><span class="s0">;</span><span class="s1"> 
+             pf.Workflow()</span><span class="s0">;</span><span class="s1"> 
+             webDriver.navigate().back()</span><span class="s0">;</span><span class="s1"> 
+            } 
+            webDriver.manage().timeouts().implicitlyWait(</span><span class="s3">5</span><span class="s0">, </span><span class="s1">TimeUnit.SECONDS)</span><span class="s0">;</span><span class="s1"> 
+            n++</span><span class="s0">;</span><span class="s1"> 
+        } 
+    } 
+} 
+</span></pre>
+</body>
+</html>

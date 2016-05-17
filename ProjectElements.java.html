@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>ProjectElements.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ProjectElements.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.FindBy</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.How</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">ProjectElements { 
+ 
+    </span><span class="s0">protected </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">ProjectElements(WebDriver webDriver) { 
+        </span><span class="s0">this</span><span class="s1">.webDriver = webDriver</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    @FindBy (xpath=</span><span class="s2">&quot;//table[@class='aui']/tbody/tr&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">List&lt;WebElement&gt; project_table</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">List&lt;WebElement&gt; getProject_table() { 
+        </span><span class="s0">return </span><span class="s1">project_table</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    @FindBy (how = How.XPATH</span><span class="s0">, </span><span class="s1">using = </span><span class="s2">&quot;//table[@class='aui']/tbody/tr/td[2]/a&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">List&lt;WebElement&gt; project_list</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">List&lt;WebElement&gt; getProject_list () { 
+        </span><span class="s0">return </span><span class="s1">project_list</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

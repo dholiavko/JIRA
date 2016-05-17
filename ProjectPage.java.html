@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>ProjectPage.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ProjectPage.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.FindBy</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">ProjectPage { 
+ 
+    </span><span class="s0">protected </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">ProjectPage(WebDriver webDriver) { 
+        </span><span class="s0">this</span><span class="s1">.webDriver = webDriver</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    @FindBy (id=</span><span class="s2">&quot;admin_menu&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement AdminMenu</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;admin_project_menu&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement AdminProjectMenu</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public void </span><span class="s1">OpenAdminMenu () { 
+        AdminMenu.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">OpenAdminProjectMenu () { 
+        AdminProjectMenu.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

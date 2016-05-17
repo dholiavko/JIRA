@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>ProjectFields.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(104,151,187); }
+.s3 { color: rgb(106,135,89); }
+.s4 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ProjectFields.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.firefox.FirefoxDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.ExpectedConditions</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.WebDriverWait</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">ProjectFields { 
+ 
+        </span><span class="s0">private final </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">public </span><span class="s1">ProjectFields(WebDriver webDriver) { 
+        </span><span class="s0">this</span><span class="s1">.webDriver = webDriver</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public static int </span><span class="s1">Components_list_size</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">protected void </span><span class="s1">Roles () { 
+        WebElement ViewProjectRolesButton = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">)) 
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(</span><span class="s3">&quot;//*[@id='project-config-summary-people-list']/li[3]/span[2]/a&quot;</span><span class="s1">)))</span><span class="s0">;</span><span class="s1"> 
+        ViewProjectRolesButton.click()</span><span class="s0">;</span><span class="s1"> 
+ 
+        WebElement PRoles = </span><span class="s0">null;</span><span class="s1"> 
+         </span><span class="s0">try </span><span class="s1">{ 
+             PRoles = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">) 
+                      .until(ExpectedConditions.presenceOfElementLocated(By.xpath(</span><span class="s3">&quot;//table[@class='aui']/tbody/tr&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+          } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+          } 
+             </span><span class="s0">if </span><span class="s1">(PRoles != </span><span class="s0">null</span><span class="s1">) { 
+                List&lt;WebElement&gt; Proj_Roles = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">) 
+                        .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(</span><span class="s3">&quot;//table[@class='aui']/tbody/tr&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s4">//                List&lt;WebElement&gt; Proj_Roles = webDriver.findElements(By.xpath(&quot;//table[@class='aui']/tbody/tr&quot;));</span><span class="s1"> 
+                </span><span class="s0">int </span><span class="s1">Proj_Roles_Size = Proj_Roles.size()</span><span class="s0">;</span><span class="s1"> 
+                System.out.println(</span><span class="s3">&quot;PROJECT ROLES: &quot; </span><span class="s1">+ Proj_Roles_Size)</span><span class="s0">;</span><span class="s1"> 
+ 
+                </span><span class="s0">for </span><span class="s1">(WebElement pr : Proj_Roles) { 
+                    System.out.println( 
+                        pr.findElement(By.xpath(</span><span class="s3">&quot;td[1]/span&quot;</span><span class="s1">)).getText() 
+</span><span class="s4">//                              + pr.findElement(By.xpath(&quot;td[2]&quot;)).getText() + &quot; - &quot;</span><span class="s1"> 
+</span><span class="s4">//                              + pr.findElement(By.xpath(&quot;td[3]&quot;)).getText() + &quot; - &quot;</span><span class="s1"> 
+</span><span class="s4">//                              + pr.findElement(By.xpath(&quot;td[4]&quot;)).getText() + &quot; - &quot;</span><span class="s1"> 
+</span><span class="s4">//                              + pr.findElement(By.xpath(&quot;td[5]&quot;)).getText()</span><span class="s1"> 
+            )</span><span class="s0">;</span><span class="s1"> 
+        } 
+        } 
+             </span><span class="s0">else </span><span class="s1">{ 
+                    System.out.println(</span><span class="s3">&quot;NO ROLES FOUND&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+             } 
+    } 
+ 
+    </span><span class="s0">protected void </span><span class="s1">Workflow () { 
+ 
+        List&lt;WebElement&gt; Workflow_Scheme = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">) 
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(</span><span class="s3">&quot;//ul/li/span/a[@class='project-config-workflow-name']&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">int </span><span class="s1">wfs = Workflow_Scheme.size()</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(</span><span class="s3">&quot;WORKFLOW SCHEME: &quot; </span><span class="s1">+ wfs)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">for </span><span class="s1">(WebElement ws : Workflow_Scheme) { 
+            System.out.println(ws.getText() + </span><span class="s3">&quot;;&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        } 
+    } 
+ 
+    </span><span class="s0">protected void </span><span class="s1">FiveOrLessComponentsSize () { 
+        List&lt;WebElement&gt; Project_Components = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By 
+                .xpath(</span><span class="s3">&quot;//ul[@id='project-config-summary-components-list']/li/span&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+        Components_list_size = Project_Components.size()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">protected void </span><span class="s1">FiveOrLessComponentsList () { 
+ 
+                List&lt;WebElement&gt; Project_Components = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">) 
+                        .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(</span><span class="s3">&quot;//ul[@id='project-config-summary-components-list']/li&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+                Components_list_size = Project_Components.size()</span><span class="s0">;</span><span class="s1"> 
+                </span><span class="s0">for </span><span class="s1">(WebElement pc : Project_Components) { 
+                    System.out.printf(pc.getText() + </span><span class="s3">&quot;%n&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                } 
+    } 
+} 
+</span></pre>
+</body>
+</html>
