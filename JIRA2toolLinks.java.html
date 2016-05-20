@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>JIRA2toolLinks.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+JIRA2toolLinks.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.FindBy</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.ExpectedConditions</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.WebDriverWait</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.concurrent.TimeUnit</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">JIRA2toolLinks { 
+ 
+    </span><span class="s0">protected </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">JIRA2toolLinks(WebDriver webDriver) { 
+        </span><span class="s0">this</span><span class="s1">.webDriver = webDriver</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    @FindBy (id=</span><span class="s2">&quot;login-form-username&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement LoginName</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;login-form-password&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement LoginPassword</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;login&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement LoginButton</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (xpath=</span><span class="s2">&quot;//div[@class='aui-header-primary']/ul/li[3]&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement IssuesButton</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (xpath=</span><span class="s2">&quot;//li[@id='issues_new_search_link']/a&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement Search_for_issues_Button</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;admin_menu&quot;</span><span class="s1">) 
+</span><span class="s3">//    @FindBy (xpath=&quot;//div[@class='aui-header-secondary']/ul/li[3]/a&quot;)</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">WebElement AdminMenu</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;admin_project_menu&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement AdminProjectMenu</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;view_categories&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement PC_button</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (xpath=</span><span class="s2">&quot;//input[@id='login-form-authenticatePassword']&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement Confirm_login</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;login-form-submit&quot;</span><span class="s1">) 
+    </span><span class="s0">private </span><span class="s1">WebElement Confirm_Login_Button</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (xpath = </span><span class="s2">&quot;//table[@class='aui aui-table-rowhover']/tbody/tr[1]/td[3]/a&quot;</span><span class="s1">) 
+    </span><span class="s0">protected </span><span class="s1">List&lt;WebElement&gt; Customer_projects</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (id=</span><span class="s2">&quot;advanced-search&quot;</span><span class="s1">) 
+    </span><span class="s0">protected </span><span class="s1">WebElement Advanced_search</span><span class="s0">;</span><span class="s1"> 
+ 
+    @FindBy (xpath=</span><span class="s2">&quot;//div[@class='search-options-container']/button&quot;</span><span class="s1">) 
+    </span><span class="s0">protected </span><span class="s1">WebElement Advanced_Search_Button</span><span class="s0">;</span><span class="s1"> 
+ 
+ 
+    </span><span class="s0">public void </span><span class="s1">EnterLoginName (String userLogin) { 
+        ExpectedConditions.elementToBeClickable(LoginName)</span><span class="s0">;</span><span class="s1"> 
+        LoginName.sendKeys(userLogin)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">EnterLoginPassword (String userPassword) { 
+        ExpectedConditions.elementToBeClickable(LoginPassword)</span><span class="s0">;</span><span class="s1"> 
+        LoginPassword.sendKeys(userPassword)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">ClickLoginButton() { 
+        ExpectedConditions.elementToBeClickable(LoginButton)</span><span class="s0">;</span><span class="s1"> 
+        LoginButton.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">OpenAdminMenu () { 
+        ExpectedConditions.elementToBeClickable(AdminMenu)</span><span class="s0">;</span><span class="s1"> 
+        AdminMenu.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">ClickIssuesButton() { 
+        IssuesButton.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">ClickSearchButton() { 
+        ExpectedConditions.elementToBeClickable(Search_for_issues_Button)</span><span class="s0">;</span><span class="s1"> 
+        Search_for_issues_Button.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">OpenAdminProjectMenu () { 
+        AdminProjectMenu.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">ClickPCbutton () { 
+        ExpectedConditions.visibilityOf(PC_button)</span><span class="s0">;</span><span class="s1"> 
+        PC_button.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">EnterConfirmLogin (String userPassword) { 
+        Confirm_login.sendKeys(userPassword)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">ClickConfirmLogin () { 
+        Confirm_Login_Button.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">EnterAdvancedSearch (String project_search) { 
+        Advanced_search.sendKeys(project_search)</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">ClickAdvancedSearchButton () { 
+        Advanced_Search_Button.click()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">ClearAdvancedSearch () { 
+        Advanced_search.clear()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">List&lt;WebElement&gt; getCustomer_projects() { 
+        </span><span class="s0">return </span><span class="s1">Customer_projects</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+ 
+} 
+</span></pre>
+</body>
+</html>

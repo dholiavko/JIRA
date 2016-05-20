@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>JIRA2toolMain.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+JIRA2toolMain.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.junit.BeforeClass</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.junit.Test</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.Dimension</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.firefox.FirefoxDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.PageFactory</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.concurrent.TimeUnit</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">JIRA2toolMain { 
+ 
+    </span><span class="s0">protected static </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected static </span><span class="s1">String HomePage = </span><span class="s2">&quot;https://jira.exadel.com&quot;</span><span class="s0">;</span><span class="s1"> 
+    JIRA2toolTest da = </span><span class="s0">new </span><span class="s1">JIRA2toolTest(webDriver)</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected static </span><span class="s1">String password = </span><span class="s2">&quot;xxx&quot;</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected static </span><span class="s1">JIRA2toolLinks login</span><span class="s0">;</span><span class="s1"> 
+ 
+    @BeforeClass 
+ 
+    </span><span class="s0">public static void </span><span class="s1">OpenFF () { 
+ 
+        webDriver = </span><span class="s0">new </span><span class="s1">FirefoxDriver()</span><span class="s0">;</span><span class="s1"> 
+        webDriver.manage().timeouts().implicitlyWait(</span><span class="s3">5</span><span class="s0">, </span><span class="s1">TimeUnit.SECONDS)</span><span class="s0">;</span><span class="s1"> 
+        webDriver.manage().window().setSize(</span><span class="s0">new </span><span class="s1">Dimension(</span><span class="s3">1500</span><span class="s0">, </span><span class="s3">800</span><span class="s1">))</span><span class="s0">;</span><span class="s1"> 
+        webDriver.navigate().to(HomePage)</span><span class="s0">;</span><span class="s1"> 
+ 
+        login = PageFactory.initElements(webDriver</span><span class="s0">, </span><span class="s1">JIRA2toolLinks.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        login.EnterLoginName(</span><span class="s2">&quot;test_ro&quot;</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        login.EnterLoginPassword(password)</span><span class="s0">;</span><span class="s1"> 
+        login.ClickLoginButton()</span><span class="s0">;</span><span class="s1"> 
+        login.OpenAdminMenu()</span><span class="s0">;</span><span class="s1"> 
+        login.OpenAdminProjectMenu()</span><span class="s0">;</span><span class="s1"> 
+        login.ClickPCbutton()</span><span class="s0">;</span><span class="s1"> 
+        login.EnterConfirmLogin(password)</span><span class="s0">;</span><span class="s1"> 
+        login.ClickConfirmLogin()</span><span class="s0">;</span><span class="s1"> 
+    } 
+ 
+    @Test 
+ 
+    </span><span class="s0">public void </span><span class="s1">ExtractProjects () </span><span class="s0">throws </span><span class="s1">Exception { 
+ 
+        da.Upload_projects()</span><span class="s0">;</span><span class="s1"> 
+ 
+    } 
+} 
+</span></pre>
+</body>
+</html>

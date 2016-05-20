@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>JIRA2toolTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(104,151,187); }
+.s3 { color: rgb(106,135,89); }
+.s4 { color: rgb(128,128,128); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+JIRA2toolTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.PageFactory</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.ExpectedConditions</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.support.ui.WebDriverWait</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span><span class="s1"> 
+</span><span class="s0">import </span><span class="s1">java.util.concurrent.TimeUnit</span><span class="s0">;</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">JIRA2toolTest { 
+ 
+    </span><span class="s0">protected </span><span class="s1">WebDriver webDriver</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">JIRA2toolLinks da</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">String pr_name</span><span class="s0">;</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">JIRA2toolLinks login2</span><span class="s0">;</span><span class="s1"> 
+ 
+    </span><span class="s0">public </span><span class="s1">JIRA2toolTest(WebDriver webDriver) { 
+        </span><span class="s0">this</span><span class="s1">.webDriver = webDriver</span><span class="s0">;</span><span class="s1"> 
+    } 
+    </span><span class="s0">public void </span><span class="s1">Upload_projects() </span><span class="s0">throws </span><span class="s1">Exception { 
+        da = PageFactory.initElements(webDriver</span><span class="s0">, </span><span class="s1">JIRA2toolLinks.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        login2 = PageFactory.initElements(webDriver</span><span class="s0">, </span><span class="s1">JIRA2toolLinks.</span><span class="s0">class</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+        ArrayList&lt;String&gt; pr_list = </span><span class="s0">new </span><span class="s1">ArrayList&lt;String&gt;()</span><span class="s0">;</span><span class="s1"> 
+ 
+        List&lt;WebElement&gt; pl = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">) 
+                .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(</span><span class="s3">&quot;//table[@class='aui aui-table-rowhover']/tbody/tr[1]/td[3]/a&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">int </span><span class="s1">rc = pl.size()</span><span class="s0">;</span><span class="s1"> 
+        System.out.println(</span><span class="s3">&quot;Number of rows: &quot; </span><span class="s1">+ rc)</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">for </span><span class="s1">(WebElement ple : pl) { 
+            pr_list.add(ple.getText())</span><span class="s0">;</span><span class="s1"> 
+        } 
+        System.out.println(pr_list)</span><span class="s0">;</span><span class="s1"> 
+ 
+        login2.ClickIssuesButton()</span><span class="s0">;</span><span class="s1"> 
+        login2.ClickSearchButton()</span><span class="s0">;</span><span class="s1"> 
+ 
+        </span><span class="s0">int </span><span class="s1">n = </span><span class="s2">0</span><span class="s0">;</span><span class="s1"> 
+        </span><span class="s0">do </span><span class="s1">{ 
+            pr_name = </span><span class="s3">&quot;project = &quot; </span><span class="s1">+ </span><span class="s3">&quot;'&quot; </span><span class="s1">+ pr_list.get(n) + </span><span class="s3">&quot;'&quot; </span><span class="s1">+ </span><span class="s3">&quot; AND &quot; </span><span class="s1">+ </span><span class="s3">&quot;updatedDate &gt;-90d&quot;</span><span class="s0">;</span><span class="s1"> 
+ 
+            login2.EnterAdvancedSearch(pr_name)</span><span class="s0">;</span><span class="s1"> 
+            Thread.sleep(</span><span class="s2">2000</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            login2.ClickAdvancedSearchButton()</span><span class="s0">;</span><span class="s1"> 
+ 
+            </span><span class="s0">try </span><span class="s1">{ 
+                Thread.sleep(</span><span class="s2">5000</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+                WebElement empty_search = (</span><span class="s0">new </span><span class="s1">WebDriverWait(webDriver</span><span class="s0">, </span><span class="s2">3</span><span class="s1">) 
+                        .until(ExpectedConditions.presenceOfElementLocated(By.xpath(</span><span class="s3">&quot;//div[@class='empty-results']&quot;</span><span class="s1">))))</span><span class="s0">;</span><span class="s1"> 
+                System.out.println(</span><span class="s3">&quot;Non-active project: &quot; </span><span class="s1">+ pr_list.get(n))</span><span class="s0">;</span><span class="s1"> 
+            } 
+            </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+                System.out.println(</span><span class="s3">&quot;Active project: &quot; </span><span class="s1">+ pr_list.get(n))</span><span class="s0">;</span><span class="s1"> 
+            } 
+            login2.ClearAdvancedSearch()</span><span class="s0">;</span><span class="s1"> 
+            n++</span><span class="s0">;</span><span class="s1"> 
+            Thread.sleep(</span><span class="s2">5000</span><span class="s1">)</span><span class="s0">;</span><span class="s1"> 
+            } </span><span class="s0">while </span><span class="s1">(n &lt; rc)</span><span class="s0">;</span><span class="s1"> 
+        } 
+    } 
+ 
+ 
+</span><span class="s4">// OPTIONAL</span><span class="s1"> 
+</span><span class="s4">//        int default_assignee = da.getProject_table().size();</span><span class="s1"> 
+</span><span class="s4">//        System.out.println(&quot;Table size: &quot; + default_assignee);</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//        int current_el;</span><span class="s1"> 
+</span><span class="s4">//        for (current_el = 0; current_el &lt; default_assignee; current_el++) {</span><span class="s1"> 
+</span><span class="s4">//            WebElement da_e = da.getProject_table().get(current_el);</span><span class="s1"> 
+</span><span class="s4">//            System.out.println(da_e.findElement(By.xpath(&quot;td[7]&quot;)).getText());</span><span class="s1"> 
+</span><span class="s4">//        }</span><span class="s1"> 
+ 
+</span><span class="s4">//    public void DemoArray () {</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//        String name = &quot;My name&quot;;</span><span class="s1"> 
+</span><span class="s4">//        String surname = &quot;My surname&quot;;</span><span class="s1"> 
+</span><span class="s4">//        ArrayList&lt;String&gt; arrlist = new ArrayList&lt;String&gt;();</span><span class="s1"> 
+</span><span class="s4">//        arrlist.add(name);</span><span class="s1"> 
+</span><span class="s4">//        arrlist.add(surname);</span><span class="s1"> 
+</span><span class="s4">//</span><span class="s1"> 
+</span><span class="s4">//        for (String demo : arrlist) {</span><span class="s1"> 
+</span><span class="s4">//            System.out.println(&quot;String: &quot; + demo);</span><span class="s1"> 
+</span><span class="s4">//        }</span><span class="s1"> 
+</span><span class="s4">//    }</span><span class="s1"> 
+ 
+</span><span class="s4">//            if (&quot;Unassigned&quot;.equals(ap))</span><span class="s1"> 
+ 
+</span></pre>
+</body>
+</html>
